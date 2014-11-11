@@ -8,7 +8,7 @@ studentnummer: 10287302
 
 This app will let you play chess in a local area without a chessboard or clock. 
 
-Game features in general:
+### Game features in general:
 
 - A valid move is performed when a player makes a legitimate chess move
 - There should again be a noticeable border around each tile so that no two tiles appear to be merged
@@ -16,12 +16,12 @@ Game features in general:
 - A chess clock should be implemented, giving both players each a total amount of time of which they can use a part of that time each move
 - The elo rating of a player should be visible
 
-Additional game features in bugghouse:
+### Additional game features in bugghouse:
 - When a piece is captured it should appear in the collection of the teammate
 - A collection of your chess pieces should be visible below the chess board
 - A player should be able the move the chess piece from his collection to the board is this is a valid bugghouse move
 
-Features:
+### Features:
 - During game play, the user should be allowed to hit the MENU button on the Android device or menu button on the app
 - There should be multiple chess board sets and pieces to choose from
 - The user can specify preferences for pieces, board and time
