@@ -16,10 +16,17 @@ This app will let you play chess in a local area without a chessboard or clock.
 - A chess clock should be implemented, giving both players each a total amount of time of which they can use a part of that time each move
 - The elo rating of a player should be visible
 
+It should look a little like this: 
+![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/doc/screens/Main_menu.png)
+
+
 ### Additional game features in bugghouse:
 - When a piece is captured it should appear in the collection of the teammate
 - A collection of your chess pieces should be visible below the chess board
 - A player should be able the move the chess piece from his collection to the board is this is a valid bugghouse move
+
+It should look a little like this: 
+
 
 ### Features:
 - During game play, the user should be allowed to hit the MENU button on the Android device or menu button on the app
@@ -34,7 +41,9 @@ This app will let you play chess in a local area without a chessboard or clock.
 - The game’s state must also survive if the user quits the app or other activities appear above it. 
 - When one of the users has won the game, a new activity must appear that congratulates the user on their accomplishment and elo changes should be applied
 
-Frameworks, languages, libraries or other technologies implemented in this project:
+
+
+### Frameworks, languages, libraries or other technologies implemented in this project:
     
     
 
