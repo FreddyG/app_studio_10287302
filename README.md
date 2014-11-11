@@ -22,15 +22,17 @@ Additional game features in bugghouse:
 - A player should be able the move the chess piece from his collection to the board is this is a valid bugghouse move
 
 Features:
+- During game play, the user should be allowed to hit the MENU button on the Android device or menu button on the app
 - There should be multiple chess board sets and pieces to choose from
+- The user can specify preferences for pieces, board and time
 - The user’s preference for pieces and board must be remembered.
 - The user can choose to play via Bluetooth or locally, when chosen Bluetooth the user should be taken to game lobby with a new activity
 - In game lobby a user has an elo rating based on how he did in that lobby
 - In game lobby a user has the ability to challenge other users
-- During game play, the user should be allowed to hit the MENU button on the Android device or menu button on the app
+- A user should be able to specify a challenge (time and game variant)
+- There should be a Bughouse chess option: (bugghouse is a popular chess variant played on two chessboards by four players in teams of two)
 - The game’s state must also survive if the user quits the app or other activities appear above it. 
-- When one of the users has won the game, a new activity must appear that congratulates the user on their accomplishment.
-- Bughouse chess option: (bugghouse is a popular chess variant played on two chessboards by four players in teams of two)
+- When one of the users has won the game, a new activity must appear that congratulates the user on their accomplishment and elo changes should be applied
 
 Frameworks, languages, libraries or other technologies implemented in this project:
     
