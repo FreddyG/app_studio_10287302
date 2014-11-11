@@ -32,9 +32,7 @@ It should look a little like this:
 
 ![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/Screens/Game_bugghouse.png)
 
-It should look a little like this: 
 
-![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/Screen_links.png)
 ### Features:
 - During game play, the user should be allowed to hit the MENU button on the Android device or menu button on the app
 - There should be multiple chess board sets and pieces to choose from
@@ -52,6 +50,7 @@ It should look a little like this:
 The way the screens are connected are: 
 
 
+![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/Screen_links.png)
 
 
 
