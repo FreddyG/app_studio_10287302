@@ -17,7 +17,7 @@ This app will let you play chess in a local area without a chessboard or clock.
 - The elo rating of a player should be visible
 
 It should look a little like this: 
-![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/screens/Main_menu.png)
+![Image bluetoothgame](https://github.com/6366295/uva_zoekmachines/blob/master/images/serp3.png)
 
 
 ### Additional game features in bugghouse:
