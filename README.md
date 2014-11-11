@@ -17,7 +17,9 @@ This app will let you play chess in a local area without a chessboard or clock.
 - The elo rating of a player should be visible
 
 It should look a little like this: 
-![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/Screens/Main_menu.png)
+
+
+![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/Screens/Game_normal.png)
 
 
 ### Additional game features in bugghouse:
@@ -28,6 +30,11 @@ It should look a little like this:
 It should look a little like this: 
 
 
+![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/Screens/Game_bugghouse.png)
+
+It should look a little like this: 
+
+![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/Screen_links.png)
 ### Features:
 - During game play, the user should be allowed to hit the MENU button on the Android device or menu button on the app
 - There should be multiple chess board sets and pieces to choose from
@@ -40,6 +47,11 @@ It should look a little like this:
 - There should be a Bughouse chess option: (bugghouse is a popular chess variant played on two chessboards by four players in teams of two)
 - The game’s state must also survive if the user quits the app or other activities appear above it. 
 - When one of the users has won the game, a new activity must appear that congratulates the user on their accomplishment and elo changes should be applied
+
+
+The way the screens are connected are: 
+
+
 
 
 
