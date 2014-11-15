@@ -21,7 +21,7 @@ objects:
 - check_victory(board) returns boolean
 - check_draw(board, game history) returns boolean
 - check_check(board) returns boolean
--
+
 }
 
 ### class BuggHouseGameLogic extends GameLogic{
