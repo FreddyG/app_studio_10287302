@@ -22,7 +22,7 @@ objects:
 - check_draw(board, game history) returns boolean
 - check_check(board) returns boolean
 
-}
+### }
 
 ### class BuggHouseGameLogic extends GameLogic{
 objects
@@ -37,18 +37,22 @@ methods:
 - check_place(board) returns boolean
 - place_piece(collection,board), places to piece and uses check-place()
 - override check_victory(board) returns boolean
-}
 
-class Bluetooth{
+### }
 
-}
+### class Bluetooth{
 
-class Rating{
+### }
+### class GameLobby{
 
-}
 
-### Sketches 
+### }
+### class Rating{
 
-### API's
+### }
 
-### Databases
+## Sketches 
+
+## API's
+
+## Databases
