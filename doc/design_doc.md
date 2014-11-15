@@ -44,7 +44,7 @@ methods:
 
 ### }
 
-### class Bluetooth{
+### class API_Bluetooth{
 methods:
 
 - sendChallenge()
@@ -54,6 +54,12 @@ methods:
 - sendPiece()
 - acceptPiece()
  
+
+### }
+
+### class API_Touch{
+
+
 
 ### }
 ### class GameLobby{
