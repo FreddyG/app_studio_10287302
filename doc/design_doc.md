@@ -108,5 +108,11 @@ methods:
 ## Sketches 
 
 ## API's
+### Bluetooth
+
+
+### Touch
 
 ## Databases
+
+Use sharedpreferences to store name,rating (maybe history of games)
