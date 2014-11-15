@@ -11,6 +11,7 @@ objects:
 - pieces 
 - board -> (x,y) coords -> empty or piece, at start of the game fill board with pieces or empty
 - game history, array with moves mode throughout the game
+- time
  
 
  methods:
@@ -21,6 +22,9 @@ objects:
 - check_victory(board) returns boolean
 - check_draw(board, game history) returns boolean
 - check_check(board) returns boolean
+- doMove(board, begin(x,y),end(x,y),game history) returns string move
+- updateGameHistory(gameHistory, move) returns boolean
+- run_game()
 
 ### }
 
@@ -41,14 +45,35 @@ methods:
 ### }
 
 ### class Bluetooth{
+methods:
+
+- sendChallenge()
+- acceptChallenge()
+- sendMove()
+- acceptMove()
+- sendPiece()
+- acceptPiece()
+ 
 
 ### }
 ### class GameLobby{
 
+methods:
 
+- startChallenge()
+- addBuggHouseTeam()
+- startBugghouse()
+- updateList()
+- 
 ### }
 ### class Rating{
 
+
+methods:
+
+
+- elo_algorithm(myRating,opponentRating,result) return int newRating
+- update_rating() ,send to database
 ### }
 
 ## Sketches 
