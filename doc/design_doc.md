@@ -1,13 +1,19 @@
 # Design doc
 
-### Classes and public methods
+## Classes and public methods
 
-class GameLogic{
-objects
+###class GameLogic{
+
+
+objects:
+
+
 -pieces 
 -board -> (x,y) coords -> empty or piece, at start of the game fill board with pieces or empty
 -game history, array with moves mode throughout the game
  methods:
+ 
+ 
 -check_move(piece,begin(x,y),end(x,y),game history) returns boolean
 -per piece: piece_movement(piece,begin(x,y),end(x,y)) returns boolean
 -check_victory(board) returns boolean
