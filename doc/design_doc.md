@@ -2,7 +2,7 @@
 
 ## Classes and public methods
 
-###class GameLogic{
+### class GameLogic{
 
 
 objects:
@@ -11,6 +11,8 @@ objects:
 - pieces 
 - board -> (x,y) coords -> empty or piece, at start of the game fill board with pieces or empty
 - game history, array with moves mode throughout the game
+ 
+
  methods:
  
  
@@ -22,10 +24,16 @@ objects:
 -
 }
 
-class BuggHouseGameLogic extends GameLogic{
+### class BuggHouseGameLogic extends GameLogic{
 objects
+
+
 - collection
+
+
 methods:
+
+
 - check_place(board) returns boolean
 - place_piece(collection,board), places to piece and uses check-place()
 - override check_victory(board) returns boolean
