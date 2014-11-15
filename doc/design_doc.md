@@ -64,7 +64,7 @@ methods:
 - addBuggHouseTeam()
 - startBugghouse()
 - updateList()
-- 
+ 
 ### }
 ### class Rating{
 
@@ -74,6 +74,7 @@ methods:
 
 - elo_algorithm(myRating,opponentRating,result) return int newRating
 - update_rating() ,send to database
+
 ### }
 
 ## Sketches 
