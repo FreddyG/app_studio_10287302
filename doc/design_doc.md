@@ -80,25 +80,25 @@ methods:
 ### class local_game_handler{
   
 
-}
+### }
 
 ### class bluetooth_game_handler{
   
 
-}
+### }
 
 ### class bugghouse_game_handler{
   
 
-}
+### }
 ### class account_handler{
   
 
-}
+### }
 ### class preferences_handler{
   
 
-}
+### }
 ## Sketches 
 
 ## API's
