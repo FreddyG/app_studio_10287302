@@ -85,19 +85,30 @@ methods:
 ### }
 
 ### activity local_game_handler{
-  handles the local game, makes use of classes: gameLogic
+  handles the local game, makes use of classes: 
+  - GameLogic
 
 ### }
 
 ### activity bluetooth_game_handler{
-  handles the bluetooth connected game, makes use of classes GameLogic, Rating, GameLobby, API_Touch,API_Bluetooth
+  handles the bluetooth connected game, makes use of classes
+  - GameLogic
+  - Rating
+  - GameLobby
+  - API_Touch
+  - API_Bluetooth
 
 ### }
 
 ### activity bugghouse_game_handler{
 
 
-  handles the bluetooth connected bugghouse game, makes use of classes BuggHouseameLogic, Rating, GameLobby, API_Touch,API_Bluetooth
+  handles the bluetooth connected bugghouse game, makes use of classes 
+  - BuggHouseameLogic
+  - Rating
+  - GameLobby
+  - API_Touch
+  - API_Bluetooth
 
 ### }
 ### activity account_handler{
