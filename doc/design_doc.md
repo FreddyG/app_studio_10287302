@@ -58,7 +58,8 @@ methods:
 ### }
 
 ### class API_Touch{
-
+ - get_input() returns start(x,y),end(x,y)
+ - get_coords(start(x,y),end(x,y)) returns board coordinates
 
 
 ### }
