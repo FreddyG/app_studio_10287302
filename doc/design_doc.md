@@ -84,35 +84,45 @@ methods:
 
 ### }
 
-### class local_game_handler{
-  
+### activity local_game_handler{
+  handles the local game, makes use of classes: gameLogic
 
 ### }
 
-### class bluetooth_game_handler{
-  
+### activity bluetooth_game_handler{
+  handles the bluetooth connected game, makes use of classes GameLogic, Rating, GameLobby, API_Touch,API_Bluetooth
 
 ### }
 
-### class bugghouse_game_handler{
+### activity bugghouse_game_handler{
+
+
+  handles the bluetooth connected bugghouse game, makes use of classes BuggHouseameLogic, Rating, GameLobby, API_Touch,API_Bluetooth
+
+### }
+### activity account_handler{
+
+
+  handles the changes in account settings, stores it in sharedpreferences
   
 
 ### }
-### class account_handler{
-  
+### activity preferences_handler{
 
-### }
-### class preferences_handler{
-  
+
+  handles the changes in in-game settings, stores it in sharedpreferences
 
 ### }
 ## Sketches 
 
 ## API's
 ### Bluetooth
-
+This app will use Bluetooth to play games. It should be able to send a game information (move,challenge and time) and player information(name,rating) via Bluetooth
 
 ### Touch
+
+
+This app will use Touch to get input for playing the game. You should be able to drag a piece to its destination.
 
 ## Databases
 
