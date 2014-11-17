@@ -177,7 +177,7 @@ The bluetooth bugghouse game will look like this, with activity: local_game_hand
 Screens are liked like this: 
 
 
-![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/screen_links.png)
+![Image bluetoothgame](https://github.com/FreddyG/app_studio_10287302/blob/master/doc/Screen_links.png)
 ## API's
 ### Bluetooth
 This app will use Bluetooth to play games. It should be able to send a game information (move,challenge and time) and player information(name,rating) via Bluetooth
