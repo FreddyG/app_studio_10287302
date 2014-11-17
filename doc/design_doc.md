@@ -3,6 +3,10 @@
 ## Classes and public methods
 
 ### class GameLogic{
+discription:
+
+
+This class describes the logic of the chess game. 
 
 
 objects:
@@ -29,6 +33,12 @@ objects:
 ### }
 
 ### class BuggHouseGameLogic extends GameLogic{
+discription:
+
+
+This class specifies the logic of the bugghouse chess game. 
+
+
 objects
 
 
@@ -45,6 +55,12 @@ methods:
 ### }
 
 ### class API_Bluetooth{
+discription:
+
+
+This class enables the player to use bluetooth. Sending challenges,moves and pieces for bugghouse. 
+
+
 methods:
 
 - sendChallenge()
@@ -58,12 +74,23 @@ methods:
 ### }
 
 ### class API_Touch{
+
+discription:
+
+This class gets in the input for the gamelogic, translating the touch of the screen into (x,y) coordinates.
+
+
  - get_input() returns start(x,y),end(x,y)
  - get_coords(start(x,y),end(x,y)) returns board coordinates
 
 
 ### }
 ### class GameLobby{
+discription:
+
+
+This class will define some methods used in the gamelobby for challenging and building a bugghouse team.
+
 
 methods:
 
@@ -74,6 +101,10 @@ methods:
  
 ### }
 ### class Rating{
+discription:
+
+
+This class will use a the elo rating algorithm to compute the player's elo rating.
 
 
 methods:
