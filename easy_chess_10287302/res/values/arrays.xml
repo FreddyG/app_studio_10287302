@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="image_ids">
+        <item>@drawable/white</item>
+        <item>@drawable/black</item>
+        <item>@drawable/pawn_white</item>
+        <item>@drawable/pawn_black</item>
+        <item>@drawable/knight_white</item>
+        <item>@drawable/knight_black</item>
+        <item>@drawable/bishop_white</item>
+        <item>@drawable/bishop_black</item>
+        <item>@drawable/rock_white</item>
+        <item>@drawable/rock_black</item>
+        <item>@drawable/queen_white</item>
+        <item>@drawable/queen_black</item>
+        <item>@drawable/king_white</item>
+        <item>@drawable/king_black</item>  
+    </string-array>
+
+</resources>

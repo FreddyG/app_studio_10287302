@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">easy_chess_10287302</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_local__game_">Local Game</string>
+    <string name="title_activity_bluetooth__game_">Bluetooth_Game_Activity</string>
+    <string name="title_activity_bughouse__game_">Bughouse_Game_Activity</string>
+    <string name="title_activity_account_">Account_Activity</string>
+    <string name="title_activity_preference_">Preference_Activity</string>
+    <string name="title_activity_connect_">Connect_Activity</string>
+    <string name="title_activity_bluetooth_">Bluetooth_Activity</string>
+
+</resources>

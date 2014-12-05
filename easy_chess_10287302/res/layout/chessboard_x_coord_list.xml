@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TableRow
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:id="@+id/y_coordinates"
+		android:layout_gravity="center"
+		android:layout_marginBottom="0px"
+		android:layout_marginTop="0px">
+		
+        <TextView
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:text=" "
+        android:id="@+id/blank"
+        android:textSize="20sp" />
+        
+        <TextView
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:text="A"
+        android:id="@+id/field1"
+        android:textSize="20sp" />
+        
+        <TextView
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:text="B"
+        android:id="@+id/field2"
+        android:textSize="20sp" />
+        
+        <TextView
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:text="C"
+        android:id="@+id/field3"
+        android:textSize="20sp" />
+        
+        <TextView
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:text="D"
+        android:id="@+id/field4"
+        android:textSize="20sp" />
+        
+        <TextView
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:text="E"
+        android:id="@+id/field5"
+        android:textSize="20sp" />
+        
+        <TextView
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:text="F"
+        android:id="@+id/field6"
+        android:textSize="20sp" />
+        
+        <TextView
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:text="G"
+        android:id="@+id/field7"
+        android:textSize="20sp" />
+        
+        <TextView
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:text="H"
+        android:id="@+id/field8"
+        android:textSize="20sp" />
+        
+        
+        
+        </TableRow>
+    
+
+</LinearLayout>

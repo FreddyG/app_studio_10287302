@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="chess.files"
+    android:versionCode="1"
+    android:versionName="1.0" >
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="17" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+        <activity
+            android:name="chess.files.Main_Menu_Activity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="chess.files.Local_Game_Activity"
+            android:label="@string/title_activity_local__game_" >
+        </activity>
+        <activity
+            android:name="chess.files.Bluetooth_Game_Activity"
+            android:label="@string/title_activity_bluetooth__game_" >
+        </activity>
+        <activity
+            android:name="chess.files.Bughouse_Game_Activity"
+            android:label="@string/title_activity_bughouse__game_" >
+        </activity>
+        <activity
+            android:name="chess.files.Account_Activity"
+            android:label="@string/title_activity_account_" >
+        </activity>
+        <activity
+            android:name="chess.files.Preference_Activity"
+            android:label="@string/title_activity_preference_" >
+        </activity>
+        <activity
+            android:name="chess.files.Connect_Activity"
+            android:label="@string/title_activity_connect_" >
+        </activity>
+        <activity
+            android:name="chess.files.Bluetooth_Activity"
+            android:label="@string/title_activity_bluetooth_" >
+        </activity>
+    </application>
+
+</manifest>
