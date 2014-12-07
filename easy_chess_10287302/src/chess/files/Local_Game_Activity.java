@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.util.Log;
 //import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -35,11 +36,7 @@ public class Local_Game_Activity extends Activity {
 	private int row = -1;
 	private int isWhite = 0;  //starts at 0 but gets updated to 1
 
-
 	
-    
-	
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -63,13 +60,48 @@ public class Local_Game_Activity extends Activity {
 	public void yes_button(View view){
 		//check move with game logic
 		if(previous_row!=-1){
-			t.setText("Moving..");
 			int piece = board[previous_row][previous_column];
+			int restoreField = board[row][column];
 			game.board = board;
 			if(game.isValidMove(piece,previous_column,previous_row,column,row,isWhite)){
-				board[previous_row][previous_column] = 0;
-				board[row][column] = piece;
-				updateBoard();
+				
+				//simulate move
+				if((previous_row+previous_column)%2==0){
+					game.board[previous_row][previous_column] = 0;
+				}
+				else{
+					game.board[previous_row][previous_column] = 1;
+				}
+				game.board[row][column] = piece;
+				
+				
+				if(game.check(isWhite)){
+					Log.d("EasyChess","Player is NOT check");
+				}
+				else{
+					Log.d("EasyChess","Player is check");
+				}
+					if(game.check(isWhite)){
+					if((previous_row+previous_column)%2==0){
+						board[previous_row][previous_column] = 0;
+					}
+					else{
+						board[previous_row][previous_column] = 1;
+					}
+					
+					board[row][column] = piece;
+					updateBoard();
+					onRelease();
+				}
+				else{			
+					game.board[row][column] = restoreField;
+					game.board[previous_row][previous_column] = piece;
+					row = -1;
+					column = -1;
+					previous_row = -1;
+					previous_column = -1;
+					t.setText("You're king is in check! ");		
+				}
 			}
 			else{
 				row = -1;
@@ -100,10 +132,20 @@ public class Local_Game_Activity extends Activity {
 		column = -1;
 		previous_row = -1;
 		previous_column = -1;
-		t.setText("Select a piece");
+		if(isWhite==1){
+			t.setText("White can select a piece");
+		}
+		else{
+			t.setText("Black can select a piece");
+		}
 	}
 	
 	private void updateBoard(){
+		//update game board
+		game.board = board;
+		
+		
+		//update the board
 		listBoard= getData(board);
 		ChessList adapter = new
 				ChessList(Local_Game_Activity.this, Y_Coords,listBoard);
