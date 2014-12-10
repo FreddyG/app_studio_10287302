@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.util.Log;
-//import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
@@ -75,13 +74,9 @@ public class Local_Game_Activity extends Activity {
 				game.board[row][column] = piece;
 				
 				
+
 				if(game.check(isWhite)){
-					Log.d("EasyChess","Player is NOT check");
-				}
-				else{
-					Log.d("EasyChess","Player is check");
-				}
-					if(game.check(isWhite)){
+					game.move(previous_column,previous_row,column,row,piece);
 					if((previous_row+previous_column)%2==0){
 						board[previous_row][previous_column] = 0;
 					}
@@ -89,6 +84,47 @@ public class Local_Game_Activity extends Activity {
 						board[previous_row][previous_column] = 1;
 					}
 					
+					//hardcoded castling white
+					if(previous_column==4){
+						if(piece==12&&column==2){
+							board[row][3]=8;
+							board[row][0]=1;
+						}
+						if(piece==12&&column==6){
+							board[row][5]=8;
+							board[row][7]=0;
+						}
+					}
+					
+					//hardcoded castling black
+					if(previous_column==4){
+						if(piece==13&&column==2){
+							board[row][3]=9;
+							board[row][0]=0;
+						}
+						if(piece==13&&column==6){
+							board[row][5]=9;
+							board[row][7]=1;
+						}
+					}
+					Log.d("GameActivity", "Is it en passant? "+ game.flag_en_passant);
+					if(game.flag_en_passant==1){
+						if(isWhite==1){
+							previous_row = 3;
+						}
+						else{
+							previous_row = 4;
+						}
+						if((previous_row+column)%2==0){
+							board[previous_row][column] = 0;
+						}
+						else{
+							board[previous_row][column] = 1;
+						}
+					}
+					
+					
+					game.flag_en_passant = 0;
 					board[row][column] = piece;
 					updateBoard();
 					onRelease();
