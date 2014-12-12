@@ -11,5 +11,10 @@
     <string name="title_activity_preference_">Preference_Activity</string>
     <string name="title_activity_connect_">Connect_Activity</string>
     <string name="title_activity_bluetooth_">Bluetooth_Activity</string>
+    <string name="chess_quote">The Chess pieces are the block alphabet 
+        which shapes thoughts; and these thoughts, although 
+        making a visual design on the chessboard, express 
+        their beauty abstractly, like a poem.  -  Marcel 
+        Duchamp</string>
 
 </resources>

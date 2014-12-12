@@ -9,17 +9,22 @@ package chess.files;
 import android.os.Bundle;
 import android.app.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 //import android.content.SharedPreferences;
 
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 
 
 public class Main_Menu_Activity extends Activity {
-
-    
+	public static final String MyPREFERENCES = "MyPrefs" ;
+	public static final String Name = "nameKey"; 
+	TextView welcome_text;
+    SharedPreferences sharedpreferences;
 	// Handle to a SharedPreferences editor
 	//private SharedPreferences mPrefs;
     //private SharedPreferences.Editor mEditor;
@@ -27,7 +32,12 @@ public class Main_Menu_Activity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main__menu_);
-		//mPrefs = getSharedPreferences(LocationUtils.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+		
+		welcome_text = (TextView) findViewById(R.id.welcome_message);
+		sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+		if (sharedpreferences.contains(Name)){
+			welcome_text.setText("Welcome " + sharedpreferences.getString(Name, "")  + "!");
+	    }
 
 	}
 	public void connect(View view) {

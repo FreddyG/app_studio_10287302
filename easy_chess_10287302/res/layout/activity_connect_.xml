@@ -3,16 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="0dp"
-    android:background="#D0A020"
+    android:background="@drawable/wood"
     tools:context=".Main_Menu_Activity" >
 
     <Button
         android:id="@+id/local"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_alignParentLeft="true"
+        android:layout_centerHorizontal="TRUE"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="46dp"
+
         android:layout_marginTop="24dp"
         android:background="@drawable/white"
         android:onClick="local"
@@ -22,9 +22,9 @@
         android:id="@+id/bluetooth"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_alignBottom="@+id/local"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="46dp"
+        android:layout_below="@+id/local"
+        android:layout_marginTop="25dp"
+        android:layout_alignLeft="@+id/local"
         android:background="@drawable/black"
         android:textColor="#F0FFFF"
         android:onClick="bluetooth"
@@ -34,11 +34,10 @@
         android:id="@+id/back"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_alignRight="@+id/local"
-        android:layout_below="@+id/local"
-        android:layout_marginTop="67dp"
-        android:background="@drawable/black"
-        android:textColor="#F0FFFF"
+        android:layout_below="@+id/bluetooth"
+        android:layout_marginTop="25dp"
+        android:layout_alignLeft="@+id/bluetooth"
+        android:background="@drawable/white"
         android:onClick="back"
         android:text="Back" />
 

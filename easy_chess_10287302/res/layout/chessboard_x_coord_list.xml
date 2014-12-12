@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="0dp"
     android:orientation="vertical" >
     
     <TableRow
@@ -15,6 +16,7 @@
         <TextView
         android:layout_width="50px"
         android:layout_height="50px"
+        android:layout_centerHorizontal="TRUE"
         android:text=" "
         android:id="@+id/blank"
         android:textSize="20sp" />
@@ -22,6 +24,7 @@
         <TextView
         android:layout_width="50px"
         android:layout_height="50px"
+        android:layout_centerHorizontal="TRUE"
         android:text="A"
         android:id="@+id/field1"
         android:textSize="20sp" />
@@ -29,6 +32,7 @@
         <TextView
         android:layout_width="50px"
         android:layout_height="50px"
+        android:layout_centerHorizontal="TRUE"
         android:text="B"
         android:id="@+id/field2"
         android:textSize="20sp" />

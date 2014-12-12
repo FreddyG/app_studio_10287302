@@ -38,18 +38,32 @@ public class Bluetooth_Activity extends Activity {
 	}
 	public void refresh(View view) {
 		Users = BluetoothObject.getValue();
+		
 		if(Users!=null){
 			CustomList adapter = new
 					CustomList(Bluetooth_Activity.this, Users);
 					list=(ListView)findViewById(R.id.list);
 					list.setAdapter(adapter);
+					
 					list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 						@Override
 						public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
+							boolean didMakeConnection = false;
 							String user = BluetoothObject.Users.get(position);
 							Toast.makeText(Bluetooth_Activity.this, "Making connection with " +user, Toast.LENGTH_SHORT).show();
-							BluetoothObject.makeSocket(position);
+							try{
+								didMakeConnection = BluetoothObject.makeSocket(position);
+								
+							
+							}finally {
+								if(!didMakeConnection){
+								Toast.makeText(Bluetooth_Activity.this, "Could not make connection with " +user, Toast.LENGTH_SHORT).show();
+								}
+								else{
+									Toast.makeText(Bluetooth_Activity.this,"Connection made!",Toast.LENGTH_SHORT).show();
+								}
+							}
 					    }
 					});
 			Log.d("StayC", "" + Users);

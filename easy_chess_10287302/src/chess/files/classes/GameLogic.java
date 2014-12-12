@@ -174,7 +174,7 @@ public class GameLogic {
 				}
 			
 				else if(y-previous_y==1){
-					Log.d("en passant","white" + x + y);
+					//Log.d("en passant","white" + x + y);
 					if(gamehistory[moves-1].end_x==x&&square(gamehistory[moves-1].end_y-(7-y))==1){
 						if(gamehistory[moves-1].start_y==1){
 							flag_en_passant = 1;
@@ -255,7 +255,6 @@ public class GameLogic {
 				//movement down
 				
 				if(previous_y>y){
-					Log.d("easychess","checking down right");
 					for(int i = 1;i<(previous_x-x);i++){
 						if(board[7-previous_y+i][previous_x-i]>1){
 							return false;
@@ -266,7 +265,6 @@ public class GameLogic {
 				//movement up
 				
 				else{
-					Log.d("easychess","checking up right");
 					for(int i = 1;i<(previous_x-x);i++){
 						if(board[7-previous_y-i][previous_x-i]>1){
 							return false;
@@ -395,7 +393,7 @@ public class GameLogic {
 				}
 				for(int i = 0;i<moves;i++){
 					//king moved
-					Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
+					//Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
 					if(gamehistory[i].piece==12){
 						return false;
 					}
@@ -416,7 +414,7 @@ public class GameLogic {
 				}
 				for(int i = 0;i<moves;i++){
 					//king moved
-					Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
+					//Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
 					if(gamehistory[i].piece==12){
 						return false;
 					}
@@ -459,7 +457,7 @@ public class GameLogic {
 				}
 				for(int i = 0;i<moves;i++){
 					//king moved
-					Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
+					//Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
 					if(gamehistory[i].piece==13){
 						return false;
 					}
@@ -480,7 +478,7 @@ public class GameLogic {
 				}
 				for(int i = 0;i<moves;i++){
 					//king moved
-					Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
+					//Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
 					if(gamehistory[i].piece==13){
 						return false;
 					}
@@ -515,6 +513,7 @@ public class GameLogic {
 		int king_x = 0;
 		int king_y = 0;
 		if(isWhite==1){
+			//get King's coordinates
 			for (int row = 0; row < 8; row ++){
 			    for (int col = 0; col < 8; col++){
 			    	if(board[7-row][col]==12){
@@ -524,10 +523,12 @@ public class GameLogic {
 			    	
 			    }
 			}
+			//check if there is a valid move to the King's coordinates
 			for (int row = 0; row < 8; row ++){
 			    for (int col = 0; col < 8; col++){
 
 			    		if(board[7-row][col]>1&&(board[7-row][col]%2)==1){
+
 			        		if(isValidMove(board[7-row][col],col,(7-row),king_x,(7-king_y),-1)){
 			        			return false;
 			        		}
@@ -536,7 +537,7 @@ public class GameLogic {
 			    	
 			    }
 			}
-			
+
 		}
 		
 		else{
@@ -568,13 +569,116 @@ public class GameLogic {
 		return true;
 	}
 	public void move(int start_x,int start_y,int end_x,int end_y,int piece){
-		Log.d("move","Setting piece " + piece);
+		
 		gamehistory[moves] = new GameHistory(start_x, start_y, end_x, end_y, piece);
-		Log.d("move","getting " + gamehistory[moves].piece);
 		moves = moves + 1;
+		
+	}
+	public boolean isCheckMate(int isWhite){
+		//if player stands check-> continue, else stop
+		if(check(isWhite)){
+			return false;
+		}
+		//Log.d("Checkmate","I am white: " + isWhite);
+		//make a list of pieces, use start_x and start_y
+		GameHistory [] myPieces = new GameHistory[16];
+		int myPieces_counter = 0;
+		if(isWhite==1){
+			
+			
+			for (int row = 0; row < 8; row ++){
+			    for (int col = 0; col < 8; col++){
+
+			    		if(board[7-row][col]>1&&(board[7-row][col]%2)==0){
+			    			int piece = board[7-row][col];
+			    			//Log.d("Checkmate","Storing piece " + piece);
+			    			myPieces[myPieces_counter] = new GameHistory(col,(7-row),0,0,piece);
+			    			myPieces_counter = myPieces_counter + 1;
+			        	}
+			    	
+			    	
+			    }
+			}
+
+		}
+		
+		else{
+			
+			for (int row = 0; row < 8; row ++){
+			    for (int col = 0; col < 8; col++){
+			    		if(board[7-row][col]>1&&(board[7-row][col]%2)==1){			    			
+			    			int piece = board[7-row][col];
+			    			//Log.d("Checkmate","Storing piece " + piece);
+			    			myPieces[myPieces_counter] = new GameHistory(col,(7-row),0,0,piece);
+			    			myPieces_counter = myPieces_counter + 1;
+			        	}
+			    }
+			}
+			
+		}
+
+		
+		for(int i = 0;i<myPieces_counter;i++){
+			//Log.d("Checkmate","checking piece "+myPieces[i].piece);
+			if(myPieces[i].piece>0){
+				for (int row = 0; row < 8; row ++){
+				    for (int col = 0; col < 8; col++){
+				    	if(isValidMove(myPieces[i].piece,myPieces[i].start_x,myPieces[i].start_y,col,row,isWhite)){
+				    		int restorePiece = board[row][col];
+				    		Log.d("checkmate","check piece "+ myPieces[i].piece);
+				    		Log.d("checkmate","set restoring piece to "+ restorePiece);
+				    		simulateMove(myPieces[i].start_x, myPieces[i].start_y, col, row, myPieces[i].piece,0);
+				    		if(check(isWhite)){
+				    			//Log.d("Checkmate","Found valid move" + myPieces[i].start_x + myPieces[i].start_y);
+				    			simulateMove(col, row,myPieces[i].start_x, myPieces[i].start_y,myPieces[i].piece,restorePiece);
+				    			return false;
+				    		}
+				    		simulateMove(col, row,myPieces[i].start_x, myPieces[i].start_y,myPieces[i].piece,restorePiece);
+				    	}
+				    }
+				}
+			}
+		}
+		
+		
+		return true;
 	}
 	private int square(int number){
 		return number*number;
 	}
-
+	
+	public void simulateMove(int start_x,int start_y,int end_x,int end_y,int piece,int restorePiece){
+		//Log.d("simulate","BOARD");
+		//Log.d("simulate","" + board[0][0] + " "+ board[0][1] + " "+ board[0][2] + " "+ board[0][3] + " "+ board[0][4] + " "+ board[0][5] + " "+ board[0][6]+ " "+ board[0][7]);
+		//Log.d("simulate","" + board[1][0] + " "+ board[1][1] + " "+ board[1][2] + " "+ board[1][3] + " "+ board[1][4] + " "+ board[1][5] + " "+ board[1][6]+ " "+ board[1][7]);
+		//Log.d("simulate","" + board[2][0] + " "+ board[2][1] + " "+ board[2][2] + " "+ board[2][3] + " "+ board[2][4] + " "+ board[2][5] + " "+ board[2][6]+ " "+ board[2][7]);
+		//Log.d("simulate","" + board[3][0] + " "+ board[3][1] + " "+ board[3][2] + " "+ board[3][3] + " "+ board[3][4] + " "+ board[3][5] + " "+ board[3][6]+ " "+ board[3][7]);
+		//Log.d("simulate","" + board[4][0] + " "+ board[4][1] + " "+ board[4][2] + " "+ board[4][3] + " "+ board[4][4] + " "+ board[4][5] + " "+ board[4][6]+ " "+ board[4][7]);
+		//Log.d("simulate","" + board[5][0] + " "+ board[5][1] + " "+ board[5][2] + " "+ board[5][3] + " "+ board[5][4] + " "+ board[5][5] + " "+ board[5][6]+ " "+ board[5][7]);
+		//Log.d("simulate","" + board[6][0] + " "+ board[6][1] + " "+ board[6][2] + " "+ board[6][3] + " "+ board[6][4] + " "+ board[6][5] + " "+ board[6][6]+ " "+ board[6][7]);
+		//Log.d("simulate","" + board[7][0] + " "+ board[7][1] + " "+ board[7][2] + " "+ board[7][3] + " "+ board[7][4] + " "+ board[7][5] + " "+ board[7][6]+ " "+ board[7][7]);
+		
+		//Log.d("simulate","Simulating " + start_x + " " +  start_y + " to " + end_x + " " + end_y);
+		if(restorePiece>1){
+			//Log.d("simulate","Restoring piece " + restorePiece); 
+			board[start_y][start_x] = restorePiece;
+		}
+		else if((start_x+start_y)%2==0){
+			board[start_y][start_x] = 0;
+		}
+		else{
+			board[start_y][start_x] = 1;
+		}
+		
+		board[end_y][end_x] = piece;
+		//Log.d("simulate","BOARD AFTER #####");
+		//Log.d("simulate","" + board[0][0] + " "+ board[0][1] + " "+ board[0][2] + " "+ board[0][3] + " "+ board[0][4] + " "+ board[0][5] + " "+ board[0][6]+ " "+ board[0][7]);
+		//Log.d("simulate","" + board[1][0] + " "+ board[1][1] + " "+ board[1][2] + " "+ board[1][3] + " "+ board[1][4] + " "+ board[1][5] + " "+ board[1][6]+ " "+ board[1][7]);
+		//Log.d("simulate","" + board[2][0] + " "+ board[2][1] + " "+ board[2][2] + " "+ board[2][3] + " "+ board[2][4] + " "+ board[2][5] + " "+ board[2][6]+ " "+ board[2][7]);
+		//Log.d("simulate","" + board[3][0] + " "+ board[3][1] + " "+ board[3][2] + " "+ board[3][3] + " "+ board[3][4] + " "+ board[3][5] + " "+ board[3][6]+ " "+ board[3][7]);
+		//Log.d("simulate","" + board[4][0] + " "+ board[4][1] + " "+ board[4][2] + " "+ board[4][3] + " "+ board[4][4] + " "+ board[4][5] + " "+ board[4][6]+ " "+ board[4][7]);
+		//Log.d("simulate","" + board[5][0] + " "+ board[5][1] + " "+ board[5][2] + " "+ board[5][3] + " "+ board[5][4] + " "+ board[5][5] + " "+ board[5][6]+ " "+ board[5][7]);
+		//Log.d("simulate","" + board[6][0] + " "+ board[6][1] + " "+ board[6][2] + " "+ board[6][3] + " "+ board[6][4] + " "+ board[6][5] + " "+ board[6][6]+ " "+ board[6][7]);
+		//Log.d("simulate","" + board[7][0] + " "+ board[7][1] + " "+ board[7][2] + " "+ board[7][3] + " "+ board[7][4] + " "+ board[7][5] + " "+ board[7][6]+ " "+ board[7][7]);
+	}
 }

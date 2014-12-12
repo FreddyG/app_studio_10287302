@@ -179,7 +179,7 @@ public void run() {
 		String[] stringArray = Users.toArray(new String[Users.size()]);
 		return stringArray;
 	}
-	public void makeSocket(int deviceNr){
+	public boolean makeSocket(int deviceNr){
 		BluetoothDevice device= foundDevices.get(deviceNr-1);
 		if(device.fetchUuidsWithSdp()){
 			ParcelUuid[] uuids = device.getUuids();
@@ -189,14 +189,17 @@ public void run() {
 				socket.connect();
 				outputStream = socket.getOutputStream();
 		        inStream = socket.getInputStream();
+		        return true;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return false;
 			}
 
 		}
 		else{
 			Log.d("StayC","can't find uuid");
+			return false;
 		}
 	}
 	

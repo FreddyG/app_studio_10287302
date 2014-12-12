@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="0dp"
-    android:background="#D0A020"
+    android:background="@drawable/wood"
     tools:context=".Main_Menu_Activity" >
     
     <TextView
@@ -14,13 +14,22 @@
         android:id="@+id/titel"
         android:textSize="40sp" />
     
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome!"
+        android:layout_centerHorizontal="TRUE"
+        android:layout_below="@+id/titel"
+        android:id="@+id/welcome_message"
+        android:textSize="20sp" />
+    
     <Button
         android:id="@+id/connect"
         android:layout_width="100dp"
         android:layout_height="70dp"
-        android:layout_alignParentTop="true"
-        android:layout_below="@+id/titel"
-        android:layout_marginTop="60dp"
+       
+        android:layout_below="@+id/welcome_message"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="TRUE"
 
         android:background="@drawable/white"

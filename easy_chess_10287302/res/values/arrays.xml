@@ -17,5 +17,22 @@
         <item>@drawable/king_white</item>
         <item>@drawable/king_black</item>  
     </string-array>
+    
+    <string-array name="image_ids2">
+        <item>@drawable/white</item>
+        <item>@drawable/black</item>
+        <item>@drawable/wp</item>
+        <item>@drawable/bp</item>
+        <item>@drawable/wn</item>
+        <item>@drawable/bn</item>
+        <item>@drawable/wb</item>
+        <item>@drawable/bb</item>
+        <item>@drawable/wr</item>
+        <item>@drawable/br</item>
+        <item>@drawable/wq</item>
+        <item>@drawable/bq</item>
+        <item>@drawable/wk</item>
+        <item>@drawable/bk</item>  
+    </string-array>
 
 </resources>

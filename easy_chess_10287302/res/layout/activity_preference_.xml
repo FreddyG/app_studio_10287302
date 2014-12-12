@@ -1,17 +1,16 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/wood"
     android:padding="0dp"
-    android:background="#D0A020"
-    tools:context=".Preference_Activity" >
+    tools:context=".Preference_Activity" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:android1="http://schemas.android.com/apk/res/android">
 
     <TextView
+        android:id="@+id/titel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Preferences"
         android:layout_centerHorizontal="TRUE"
-        android:id="@+id/titel"
+        android:text="Preferences"
         android:textSize="30sp" />
 
     <Button
@@ -24,5 +23,56 @@
         android:background="@drawable/white"
         android:onClick="back"
         android:text="Back" />
+
+    <RadioGroup
+        android1:id="@+id/radio_pieces"
+        android1:layout_width="wrap_content"
+        android1:layout_height="wrap_content"
+        android1:layout_alignLeft="@+id/back"
+        android1:layout_alignTop="@+id/imageView2"
+        android1:layout_marginTop="16dp" >
+
+        <RadioButton
+            android1:id="@+id/classic_button"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_centerHorizontal="true"
+            android:checked="true"
+            android1:text="Classic" />
+
+        <RadioButton
+            android1:id="@+id/modern_button"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:text="Modern" />
+    </RadioGroup>
+
+    <ImageView
+        android1:id="@+id/imageView1"
+        android1:layout_width="100px"
+        android1:layout_height="100px"
+        android1:layout_alignRight="@+id/imageView2"
+        android1:layout_below="@+id/imageView2"
+        android1:src="@drawable/bb" />
+
+    <ImageView
+        android1:id="@+id/imageView2"
+        android1:layout_width="100px"
+        android1:layout_height="100px"
+        android1:layout_below="@+id/titel"
+        android1:layout_marginRight="14dp"
+        android1:layout_marginTop="18dp"
+        android1:layout_toLeftOf="@+id/radioSex"
+        android1:src="@drawable/bishop_black" />
+    
+    <TextView
+        android:id="@+id/quote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/back"
+        android:layout_marginBottom="20dp"
+        android:text="@string/chess_quote"
+        android:padding="15dp" 
+        android:textSize="14sp" />
 
 </RelativeLayout>

@@ -4,11 +4,20 @@ import chess.files.classes.*;
 import android.os.Bundle;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,6 +36,7 @@ public class Local_Game_Activity extends Activity {
 	TextView t;	
 	ListView list;
 	ListView x_coordinates;
+	ImageView indicator;
 	
 	//variables
 	private int previous_column = -1;
@@ -34,7 +44,15 @@ public class Local_Game_Activity extends Activity {
 	private int column = -1;
 	private int row = -1;
 	private int isWhite = 0;  //starts at 0 but gets updated to 1
-
+	
+	SharedPreferences sharedpreferences;
+	
+	public static final String MyPREFERENCES = "MyPrefs" ;
+	public static final String Pieces = "piecesKey"; 
+	public static final String SaveBoard = "boardKey";
+	public static final String SaveTurn = "turnKey";
+	public static final String SaveHistory = "historyKey";
+	public static final String SaveCount = "countKey";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +64,10 @@ public class Local_Game_Activity extends Activity {
 		//set textview
 		t=new TextView(this); 
 	    t=(TextView)findViewById(R.id.move);
+	    
+	    //set imageview
+	    indicator = new ImageView(this);
+	    indicator = (ImageView)findViewById(R.id.indicator);
 	    
 	    //set listview
 	    board = game.init_board();
@@ -59,22 +81,18 @@ public class Local_Game_Activity extends Activity {
 	public void yes_button(View view){
 		//check move with game logic
 		if(previous_row!=-1){
+			
+			//get pieces and set board
 			int piece = board[previous_row][previous_column];
 			int restoreField = board[row][column];
 			game.board = board;
+			
 			if(game.isValidMove(piece,previous_column,previous_row,column,row,isWhite)){
 				
 				//simulate move
-				if((previous_row+previous_column)%2==0){
-					game.board[previous_row][previous_column] = 0;
-				}
-				else{
-					game.board[previous_row][previous_column] = 1;
-				}
-				game.board[row][column] = piece;
-				
-				
+				game.simulateMove(previous_column, previous_row, column, row, piece,0);
 
+				//check if the simulated move, does not cause check
 				if(game.check(isWhite)){
 					game.move(previous_column,previous_row,column,row,piece);
 					if((previous_row+previous_column)%2==0){
@@ -107,7 +125,8 @@ public class Local_Game_Activity extends Activity {
 							board[row][7]=1;
 						}
 					}
-					Log.d("GameActivity", "Is it en passant? "+ game.flag_en_passant);
+					
+					//hardcoded en passant rule
 					if(game.flag_en_passant==1){
 						if(isWhite==1){
 							previous_row = 3;
@@ -122,21 +141,31 @@ public class Local_Game_Activity extends Activity {
 							board[previous_row][column] = 1;
 						}
 					}
-					
-					
 					game.flag_en_passant = 0;
+					
+					
 					board[row][column] = piece;
 					updateBoard();
-					onRelease();
+					if(game.isCheckMate(isWhite)){
+						t.setText("CheckMate!");
+					}
+					else{
+						onRelease();
+					}
+					
 				}
-				else{			
+				else{
+					
+					//move causes check, so reset
 					game.board[row][column] = restoreField;
 					game.board[previous_row][previous_column] = piece;
+					
 					row = -1;
 					column = -1;
 					previous_row = -1;
 					previous_column = -1;
-					t.setText("You're king is in check! ");		
+					
+					t.setText("Your king is in check! ");		
 				}
 			}
 			else{
@@ -159,7 +188,7 @@ public class Local_Game_Activity extends Activity {
 			t.setText("Move from "+ X_Coords[previous_column] + (8 -previous_row)+ " to " + X_Coords[column] + (8 - row) + "?");
 		}
 		else{
-		t.setText("Selected "+ X_Coords[column]+(8- row));
+			t.setText("Selected "+ X_Coords[column]+(8- row));
 		}
 	}
 	
@@ -178,7 +207,11 @@ public class Local_Game_Activity extends Activity {
 	
 	private void updateBoard(){
 		//update game board
-		game.board = board;
+		for (int row = 0; row < 8; row ++){
+		    for (int col = 0; col < 8; col++){
+		    	game.board[row][col] = board[row][col];
+		    }
+		}
 		
 		
 		//update the board
@@ -187,13 +220,20 @@ public class Local_Game_Activity extends Activity {
 				ChessList(Local_Game_Activity.this, Y_Coords,listBoard);
 		list=(ListView)findViewById(R.id.list);
 		list.setAdapter(adapter);
+			
+		
+		BitmapDrawable black = (BitmapDrawable)getResources().getDrawable(R.drawable.black);
+		BitmapDrawable white = (BitmapDrawable)getResources().getDrawable(R.drawable.white);
 		
 		//swap turns after move
 		if(isWhite==1){
 			isWhite = 0;
+			indicator.setBackground(black);
+			
 		}
 		else{
 			isWhite = 1;
+			indicator.setBackground(white);
 		}
 		
 	}
@@ -210,9 +250,29 @@ public class Local_Game_Activity extends Activity {
 		
 		int [][] imageItems = new int[8][8];
 		int getItem = 0;
-		
+		String chosenPieces;
 		Resources a = getResources();
-		TypedArray imgs = a.obtainTypedArray(R.array.image_ids);
+		sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+		if (sharedpreferences.contains(Pieces)){
+	         chosenPieces = sharedpreferences.getString(Pieces, "");
+	     }
+		else{
+			chosenPieces = "Classic";
+		}
+		Log.d("Local pieces","We gaan spelen met "+ chosenPieces);
+		TypedArray imgs;
+		if(chosenPieces.equals("Classic")){
+			imgs = a.obtainTypedArray(R.array.image_ids);
+			Log.d("Local pieces","Dus gekozen voor classic "+ chosenPieces);
+		}
+		else if(chosenPieces.equals("Modern")){
+			imgs = a.obtainTypedArray(R.array.image_ids2);
+		}
+		else{
+			imgs = a.obtainTypedArray(R.array.image_ids);
+		}
+		
+		
 		
 		for (int j = 0;j<8;j++){
 			for (int i = 0; i < 8; i++) {
@@ -330,7 +390,115 @@ public class Local_Game_Activity extends Activity {
 	}
 	
 	public void back(View view) {
-	     finish();
+		
+		final Dialog dialog = new Dialog(this);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.popup_pause);
+		
+		
+	    
+		// set the custom dialog components - text, image and button
+
+		dialog.show();
+		Button ContinueButton = (Button) dialog.findViewById(R.id.Continue);
+		// if button is clicked, close the custom dialog
+		ContinueButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+				
+			}
+		});
+		Button newGameButton = (Button) dialog.findViewById(R.id.NewGame);
+		// if button is clicked, close the custom dialog
+		newGameButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				board = game.init_board();
+			    listBoard= getData(board);
+			    updateBoard();
+				dialog.dismiss();
+				
+			}
+		});
+		Button SaveButton = (Button) dialog.findViewById(R.id.Save);
+		// if button is clicked, close the custom dialog
+		SaveButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				
+				StringBuilder sb = new StringBuilder();
+				
+				for (int j = 0;j<8;j++){
+					for (int i = 0; i < 8; i++) {
+						sb.append(board[j][i]);
+						if(i<7)
+							sb.append(",");
+					}
+					if(j<7)
+						sb.append("-");
+				}
+				
+				Log.d("sharedpref","Saving the board like " +sb.toString());
+				Editor editor = sharedpreferences.edit();
+				
+				editor.putString(SaveBoard, sb.toString());
+				int saveTurn = 0;
+				if(isWhite==1){
+					saveTurn = 0;
+				}
+				else{
+					saveTurn = 1;
+				}
+				editor.putString(SaveTurn, ("" + saveTurn));
+				//editor.putString(SaveHistory, game.gamehistory);
+				//editor.putString(SaveCount, sb.toString());
+				editor.commit();
+				dialog.dismiss();
+				
+				
+			}
+		});
+		Button loadButton = (Button) dialog.findViewById(R.id.Load);
+		// if button is clicked, close the custom dialog
+		loadButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (sharedpreferences.contains(SaveBoard)){
+					String LoadBoard = sharedpreferences.getString(SaveBoard, "");
+					
+					String[] parts = LoadBoard.split("-");
+					Log.d("load","split - gives me on first " + parts[0]);
+					for(int j = 0;j<8;j++){
+						String []current = parts[j].split(",");
+						for(int i = 0;i<8;i++){
+							board[j][i] = Integer.parseInt(current[i]);
+						}
+					}
+				}
+				if (sharedpreferences.contains(SaveTurn)){
+					Log.d("Save turn","Gets here " + sharedpreferences.getString(SaveTurn, ""));
+					isWhite = Integer.parseInt(sharedpreferences.getString(SaveTurn, ""));
+				}
+				updateBoard();
+				
+				dialog.dismiss();
+				
+			}
+		});
+		
+		
+		Button ExitButton = (Button) dialog.findViewById(R.id.Exit);
+		// if button is clicked, close the custom dialog
+		ExitButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+			    finish();
+				dialog.dismiss();
+				
+			}
+		});
+
 	}
 
 }
