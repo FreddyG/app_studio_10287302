@@ -12,16 +12,17 @@ import android.widget.TextView;
 
 public class ChessList extends ArrayAdapter<String>{
 	
+	
 	private final Activity context;
-	private final String[] web;
+	private final String[] coordinates;
 	private final int[][] data;
 	
 	public ChessList(Activity context,
-	String[] web, int [][] data) {
+	String[] coordinates, int [][] data) {
 		
-		super(context,R.layout.chessboard_list , web);
+		super(context,R.layout.chessboard_list , coordinates);
 		this.context = context;
-		this.web = web;
+		this.coordinates = coordinates;
 		this.data = data;
 
 	}
@@ -31,41 +32,42 @@ public class ChessList extends ArrayAdapter<String>{
 		LayoutInflater inflater = context.getLayoutInflater();
 		View rowView= inflater.inflate(R.layout.chessboard_list, null, true);
 		
+		//set coordinate
 		TextView t=(TextView)rowView.findViewById(R.id.y_coordinate);
-		t.setText(""+ web[position]);
+		t.setText(""+ coordinates[position]);
 		
+		//set chess images
 		ImageView imageView1 = (ImageView) rowView.findViewById(R.id.field1);
-		int d = data[position][0];
-		imageView1.setImageResource(d);
+		int resourcePosition = data[position][0];
+		imageView1.setImageResource(resourcePosition);
 		
 		ImageView imageView2 = (ImageView) rowView.findViewById(R.id.field2);
-		d = data[position][1];
-		imageView2.setImageResource(d);
+		resourcePosition = data[position][1];
+		imageView2.setImageResource(resourcePosition);
 		
 		ImageView imageView3 = (ImageView) rowView.findViewById(R.id.field3);
-		d = data[position][2];
-		imageView3.setImageResource(d);
+		resourcePosition = data[position][2];
+		imageView3.setImageResource(resourcePosition);
 		
 		ImageView imageView4 = (ImageView) rowView.findViewById(R.id.field4);
-		d = data[position][3];
-		imageView4.setImageResource(d);
+		resourcePosition = data[position][3];
+		imageView4.setImageResource(resourcePosition);
 		
 		ImageView imageView5 = (ImageView) rowView.findViewById(R.id.field5);
-		d = data[position][4];
-		imageView5.setImageResource(d);
+		resourcePosition = data[position][4];
+		imageView5.setImageResource(resourcePosition);
 		
 		ImageView imageView6 = (ImageView) rowView.findViewById(R.id.field6);
-		d = data[position][5];
-		imageView6.setImageResource(d);
+		resourcePosition = data[position][5];
+		imageView6.setImageResource(resourcePosition);
 		
 		ImageView imageView7 = (ImageView) rowView.findViewById(R.id.field7);
-		d = data[position][6];
-		imageView7.setImageResource(d);
+		resourcePosition = data[position][6];
+		imageView7.setImageResource(resourcePosition);
 		
 		ImageView imageView8 = (ImageView) rowView.findViewById(R.id.field8);
-		d = data[position][7];
-		imageView8.setImageResource(d);
-		
+		resourcePosition = data[position][7];
+		imageView8.setImageResource(resourcePosition);
 		
 		return rowView;
 	}

@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="EasyChess"
+        android:text="@string/main_titel"
         android:layout_centerHorizontal="TRUE"
         android:id="@+id/titel"
         android:textSize="40sp" />
@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome!"
+        android:text="@string/main_welcome"
         android:layout_centerHorizontal="TRUE"
         android:layout_below="@+id/titel"
         android:id="@+id/welcome_message"
@@ -34,7 +34,7 @@
 
         android:background="@drawable/white"
         android:onClick="connect"
-        android:text="Connect" />
+        android:text="@string/main_connect" />
     
     <Button
         android:id="@+id/preferences"
@@ -46,7 +46,7 @@
         android:layout_alignLeft="@+id/connect"
         android:background="@drawable/black"
         android:onClick="preferences"
-        android:text="Preferences"
+        android:text="@string/main_preferences"
         android:textColor="#F0FFFF"
          />
 
@@ -60,7 +60,7 @@
         android:layout_alignLeft="@+id/connect"
         android:background="@drawable/white"
         android:onClick="my_account"
-        android:text="My account"
+        android:text="@string/main_account"
          />
 
     
@@ -76,7 +76,7 @@
         android:textColor="#F0FFFF"
         android:onClick="quit"
         
-        android:text="Quit" />
+        android:text="@string/main_quit" />
 
     
     

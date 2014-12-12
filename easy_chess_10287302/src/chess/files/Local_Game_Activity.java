@@ -11,7 +11,6 @@ import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
@@ -23,6 +22,8 @@ import android.widget.TextView;
 
 
 public class Local_Game_Activity extends Activity {
+	
+	
 	//arrays
 	private String [] Y_Coords = new String[] { "8", "7",
 			"6", "5","4","3","2","1"};
@@ -46,7 +47,7 @@ public class Local_Game_Activity extends Activity {
 	private int isWhite = 0;  //starts at 0 but gets updated to 1
 	
 	SharedPreferences sharedpreferences;
-	
+	//sharedPreferences keys
 	public static final String MyPREFERENCES = "MyPrefs" ;
 	public static final String Pieces = "piecesKey"; 
 	public static final String SaveBoard = "boardKey";
@@ -160,19 +161,13 @@ public class Local_Game_Activity extends Activity {
 					game.board[row][column] = restoreField;
 					game.board[previous_row][previous_column] = piece;
 					
-					row = -1;
-					column = -1;
-					previous_row = -1;
-					previous_column = -1;
+					resetValues();
 					
 					t.setText("Your king is in check! ");		
 				}
 			}
 			else{
-				row = -1;
-				column = -1;
-				previous_row = -1;
-				previous_column = -1;
+				resetValues();
 				t.setText("Not a valid move.");			
 			}
 		}
@@ -181,6 +176,15 @@ public class Local_Game_Activity extends Activity {
 	
 	public void no_button(View view){
 		onRelease();
+	}
+	
+	public void resetValues(){
+		
+		row = -1;
+		column = -1;
+		previous_row = -1;
+		previous_column = -1;
+		
 	}
 	
 	private void onPressed(){
@@ -193,10 +197,7 @@ public class Local_Game_Activity extends Activity {
 	}
 	
 	private void onRelease(){
-		row = -1;
-		column = -1;
-		previous_row = -1;
-		previous_column = -1;
+		resetValues();
 		if(isWhite==1){
 			t.setText("White can select a piece");
 		}
@@ -259,11 +260,9 @@ public class Local_Game_Activity extends Activity {
 		else{
 			chosenPieces = "Classic";
 		}
-		Log.d("Local pieces","We gaan spelen met "+ chosenPieces);
 		TypedArray imgs;
 		if(chosenPieces.equals("Classic")){
 			imgs = a.obtainTypedArray(R.array.image_ids);
-			Log.d("Local pieces","Dus gekozen voor classic "+ chosenPieces);
 		}
 		else if(chosenPieces.equals("Modern")){
 			imgs = a.obtainTypedArray(R.array.image_ids2);
@@ -391,41 +390,43 @@ public class Local_Game_Activity extends Activity {
 	
 	public void back(View view) {
 		
+		//make dialog
 		final Dialog dialog = new Dialog(this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setContentView(R.layout.popup_pause);
-		
-		
-	    
-		// set the custom dialog components - text, image and button
-
 		dialog.show();
-		Button ContinueButton = (Button) dialog.findViewById(R.id.Continue);
-		// if button is clicked, close the custom dialog
+		
+		Button ContinueButton = (Button) dialog.findViewById(R.id.Continue);	
 		ContinueButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
 				dialog.dismiss();
 				
 			}
 		});
 		Button newGameButton = (Button) dialog.findViewById(R.id.NewGame);
-		// if button is clicked, close the custom dialog
+		
+		//start a new game
 		newGameButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
 				board = game.init_board();
 			    listBoard= getData(board);
-			    updateBoard();
+			    isWhite = 0;
+			    updateBoard();		    
 				dialog.dismiss();
 				
 			}
 		});
+		
+		//save current game as a string
 		Button SaveButton = (Button) dialog.findViewById(R.id.Save);
-		// if button is clicked, close the custom dialog
 		SaveButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
 				
 				StringBuilder sb = new StringBuilder();
 				
@@ -439,10 +440,10 @@ public class Local_Game_Activity extends Activity {
 						sb.append("-");
 				}
 				
-				Log.d("sharedpref","Saving the board like " +sb.toString());
+				//use sharedpreference to save
 				Editor editor = sharedpreferences.edit();
-				
 				editor.putString(SaveBoard, sb.toString());
+				
 				int saveTurn = 0;
 				if(isWhite==1){
 					saveTurn = 0;
@@ -450,38 +451,45 @@ public class Local_Game_Activity extends Activity {
 				else{
 					saveTurn = 1;
 				}
+				//also save who's turn it is
 				editor.putString(SaveTurn, ("" + saveTurn));
+				
 				//editor.putString(SaveHistory, game.gamehistory);
 				//editor.putString(SaveCount, sb.toString());
 				editor.commit();
 				dialog.dismiss();
 				
-				
 			}
 		});
+		
+		//load game from shared preferences
 		Button loadButton = (Button) dialog.findViewById(R.id.Load);
-		// if button is clicked, close the custom dialog
+
 		loadButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if (sharedpreferences.contains(SaveBoard)){
-					String LoadBoard = sharedpreferences.getString(SaveBoard, "");
 					
+					//build board from string
+					
+					String LoadBoard = sharedpreferences.getString(SaveBoard, "");
 					String[] parts = LoadBoard.split("-");
-					Log.d("load","split - gives me on first " + parts[0]);
-					for(int j = 0;j<8;j++){
+					
+					//"-" splits rows, "," splits elements in rows
+					for( int j = 0;j<8;j++){
+						
 						String []current = parts[j].split(",");
-						for(int i = 0;i<8;i++){
+						for( int i = 0;i<8;i++){
+							
 							board[j][i] = Integer.parseInt(current[i]);
 						}
 					}
 				}
-				if (sharedpreferences.contains(SaveTurn)){
-					Log.d("Save turn","Gets here " + sharedpreferences.getString(SaveTurn, ""));
+				if( sharedpreferences.contains(SaveTurn)){				
 					isWhite = Integer.parseInt(sharedpreferences.getString(SaveTurn, ""));
 				}
-				updateBoard();
 				
+				updateBoard();
 				dialog.dismiss();
 				
 			}
@@ -489,16 +497,14 @@ public class Local_Game_Activity extends Activity {
 		
 		
 		Button ExitButton = (Button) dialog.findViewById(R.id.Exit);
-		// if button is clicked, close the custom dialog
 		ExitButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				
 			    finish();
 				dialog.dismiss();
 				
 			}
 		});
-
 	}
-
 }

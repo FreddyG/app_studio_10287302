@@ -9,16 +9,17 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 
-public class CustomList extends ArrayAdapter<String>{
+public class LobbyList extends ArrayAdapter<String>{
+	
 	
 	private final Activity context;
-	private final String[] web;
+	private final String[] users;
 	
-	public CustomList(Activity context,
-	String[] web) {
-		super(context,R.layout.lobby_list , web);
+	public LobbyList(Activity context,String[] users) {
+		
+		super(context,R.layout.lobby_list , users);
 		this.context = context;
-		this.web = web;
+		this.users = users;
 		
 	}
 	
@@ -29,7 +30,7 @@ public class CustomList extends ArrayAdapter<String>{
 		View rowView= inflater.inflate(R.layout.lobby_list, null, true);
 		
 		TextView txtTitle = (TextView) rowView.findViewById(R.id.Naam);		
-		txtTitle.setText(web[position]);
+		txtTitle.setText(users[position]);
 
 		return rowView;
 	}

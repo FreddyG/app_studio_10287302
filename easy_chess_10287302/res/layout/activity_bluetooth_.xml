@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="0dp"
-    android:background="#D0A020"
+    android:background="@drawable/wood"
     tools:context=".Bluetooth_Activity" >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bluetooth"
+        android:text="@string/bluetooth_titel"
         android:layout_centerHorizontal="TRUE"
         android:id="@+id/titel"
         android:textSize="30sp" />
@@ -32,7 +32,7 @@
         android:textColor="#F0FFFF"
         android:onClick="refresh"
         android:layout_marginLeft="46dp"
-        android:text="Refresh" />
+        android:text="@string/bluetooth_refresh" />
 	<Button
         android:id="@+id/back"
         android:layout_width="100dp"
@@ -44,6 +44,6 @@
         android:background="@drawable/white"
         android:layout_marginRight="46dp"
         android:onClick="back"
-        android:text="Back" />
+        android:text="@string/back_button" />
 
 </RelativeLayout>

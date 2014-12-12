@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="TRUE"
-        android:text="Preferences"
+        android:text="@string/main_preferences"
         android:textSize="30sp" />
 
     <Button
@@ -22,7 +22,7 @@
         android:layout_marginBottom="48dp"
         android:background="@drawable/white"
         android:onClick="back"
-        android:text="Back" />
+        android:text="@string/back_button" />
 
     <RadioGroup
         android1:id="@+id/radio_pieces"
@@ -36,33 +36,33 @@
             android1:id="@+id/classic_button"
             android1:layout_width="wrap_content"
             android1:layout_height="wrap_content"
-            android1:layout_centerHorizontal="true"
             android:checked="true"
-            android1:text="Classic" />
+            android1:text="@string/preference_classic" />
 
         <RadioButton
             android1:id="@+id/modern_button"
             android1:layout_width="wrap_content"
             android1:layout_height="wrap_content"
-            android1:text="Modern" />
+            android1:text="@string/preference_modern" />
     </RadioGroup>
 
     <ImageView
         android1:id="@+id/imageView1"
-        android1:layout_width="100px"
-        android1:layout_height="100px"
+        android1:layout_width="70dp"
+        android1:layout_height="70dp"
         android1:layout_alignRight="@+id/imageView2"
         android1:layout_below="@+id/imageView2"
+        android:contentDescription="@string/desc"
         android1:src="@drawable/bb" />
 
     <ImageView
         android1:id="@+id/imageView2"
-        android1:layout_width="100px"
-        android1:layout_height="100px"
+        android1:layout_width="70dp"
+        android1:layout_height="70dp"
         android1:layout_below="@+id/titel"
         android1:layout_marginRight="14dp"
         android1:layout_marginTop="18dp"
-        android1:layout_toLeftOf="@+id/radioSex"
+		android:contentDescription="@string/desc"
         android1:src="@drawable/bishop_black" />
     
     <TextView

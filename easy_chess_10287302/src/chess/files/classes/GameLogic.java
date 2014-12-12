@@ -1,7 +1,5 @@
 package chess.files.classes;
 
-import android.util.Log;
-
 public class GameLogic {
 	
 	/**
@@ -24,18 +22,22 @@ public class GameLogic {
     13 = king_black
       
     */
+	
 	public int [][] board = new int[8][8];
 	public int moves = 0;
 	public int flag_en_passant = 0;
-	//80 moves is most common, but we will do 100 
-	public GameHistory [] gamehistory = new GameHistory[100];
+	
+	//80 moves is most common, but we will do 120 
+	public GameHistory [] gamehistory = new GameHistory[120];
+	
 	//return board filled with pieces in initial state
 	public int[][] init_board(){
+		
 		moves = 0;
 		for (int row = 0; row < 8; row ++){
 		    for (int col = 0; col < 8; col++){
 		    	if((col+row)%2==0){
-		        board[row][col] = 0;
+		    		board[row][col] = 0;
 		    	}
 		    	else{
 		    		board[row][col] = 1;
@@ -97,56 +99,70 @@ public class GameLogic {
 			 if(!whitePawnMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 3:
 			 if(!blackPawnMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 4:
 			 if(!knightMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 5:
 			 if(!knightMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 6:
 			 if(!bishopMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 7:
 			 if(!bishopMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 8:
 			 if(!rockMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 9:
 			 if(!rockMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 10:
 			 if(!queenMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 11:
 			 if(!queenMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 12:
 			 if(!whiteKingMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		 case 13:
 			 if(!blackKingMove(previous_x,previous_y,x,y))
 				 return false;
          break;
+         
 		}
 		if(!dontHitMyOwnPiece(x,y,isWhite)){
 			return false;
 		}
+		
 		return true;
 	}
+	
 	private boolean isSameColor(int piece,int isWhite){
 		if(piece==0||piece==1){
 			return false;
@@ -174,7 +190,7 @@ public class GameLogic {
 				}
 			
 				else if(y-previous_y==1){
-					//Log.d("en passant","white" + x + y);
+					
 					if(gamehistory[moves-1].end_x==x&&square(gamehistory[moves-1].end_y-(7-y))==1){
 						if(gamehistory[moves-1].start_y==1){
 							flag_en_passant = 1;
@@ -206,14 +222,18 @@ public class GameLogic {
 		if(previous_x!=x){
 			if(square(previous_x-x)==1){
 				if(previous_y-y==1&&board[7-y][x]>1){
+					
 					flag_en_passant = 1;
 					return true;
+					
 				}
 				else if(previous_y-y==1){
 					if(gamehistory[moves-1].end_x==x&&square(gamehistory[moves-1].end_y-(7-y))==1){
 						if(gamehistory[moves-1].start_y==6){
+							
 							flag_en_passant = 1;
 							return true;
+							
 						}
 					}
 					
@@ -223,12 +243,16 @@ public class GameLogic {
 		//pawn moves forward
 		else{
 			if(previous_y-y==1&&board[7-y][x]<2){
+				
 				return true;
+				
 			}
 			//initiale special move
 			if(previous_y==6&&y==4){
 				if(board[7-y][x]<2&&board[7-y-1][x]<2){
+					
 					return true;
+					
 				}
 				
 			}
@@ -238,6 +262,7 @@ public class GameLogic {
 		
 	}
 	private boolean knightMove(int previous_x,int previous_y,int x,int y){
+		
 		//horse can jump over pieces, only check movement
 		if(square(previous_x-x)*square(previous_y-y)==4){
 			return true;
@@ -247,13 +272,14 @@ public class GameLogic {
 		
 	}
 	private boolean bishopMove(int previous_x,int previous_y,int x,int y){
+		
+		//need to check movement but also pieces in between
 		if((previous_x-x)*(previous_x-x)-(previous_y-y)*(previous_y-y)!=0){
 			return false;
 		}
 		//movement left
 		if(previous_x>x){
-				//movement down
-				
+				//movement down		
 				if(previous_y>y){
 					for(int i = 1;i<(previous_x-x);i++){
 						if(board[7-previous_y+i][previous_x-i]>1){
@@ -304,6 +330,7 @@ public class GameLogic {
 		
 	}
 	private boolean rockMove(int previous_x,int previous_y,int x,int y){
+		
 		if((previous_x-x)==0){
 			//go down
 			if(previous_y>y){
@@ -312,14 +339,17 @@ public class GameLogic {
 					if(board[7-y-i][x]>1){
 						return false;
 					}
+					
 				}
 			}
 			//go up
 			else{
 				for(int i = 1;i<y-previous_y;i++){
+					
 					if(board[7-y+i][x]>1){
 						return false;
 					}
+					
 				}
 			}
 			
@@ -328,30 +358,39 @@ public class GameLogic {
 			//go left
 			if(previous_x>x){
 				for(int i = 1;i<previous_x-x;i++){
+					
 					if(board[7-y][x+i]>1){
 						return false;
 					}
+					
 				}
 				
 			}
 			//go right
 			else{
 				for(int i = 1;i<x-previous_x;i++){
+					
 					if(board[7-y][x-i]>1){
 						return false;
 					}
+					
 				}
 				
 			}
 			
 		}
+		
 		if((previous_x-x)==0||(previous_y-y)==0){
 			return true;
 		}
+		
 		return false;
 		
+		
 	}
+	
 	private boolean queenMove(int previous_x,int previous_y,int x,int y){
+		
 		if(rockMove(previous_x,previous_y,x,y)||bishopMove(previous_x,previous_y,x,y)){
 			return true;
 		}
@@ -359,7 +398,9 @@ public class GameLogic {
 		return false;
 		
 	}
-	private boolean whiteKingMove(int previous_x,int previous_y,int x,int y){		
+	
+	private boolean whiteKingMove(int previous_x,int previous_y,int x,int y){
+		
 		if(square(previous_x-x)==1){
 			if(square(previous_y-y)==1||square(previous_y-y)==0){
 				return true;
@@ -373,8 +414,7 @@ public class GameLogic {
 		}
 		/** hard coded castling (special move)
 		 * rules:
-		 * king needs to not be in check, stand check on the way and
-		   stand check eventually
+		 * king needs to not stand check eventually
 		 * king should not have moved before
 		 * rock should not have moved before
 		 * there should be no pieces in between the king and the rock
@@ -393,7 +433,7 @@ public class GameLogic {
 				}
 				for(int i = 0;i<moves;i++){
 					//king moved
-					//Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
+					
 					if(gamehistory[i].piece==12){
 						return false;
 					}
@@ -414,11 +454,11 @@ public class GameLogic {
 				}
 				for(int i = 0;i<moves;i++){
 					//king moved
-					//Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
+					
 					if(gamehistory[i].piece==12){
 						return false;
 					}
-					//left rock moved
+					//right rock moved
 					if(gamehistory[i].start_x==7&&gamehistory[i].start_y==7){
 						return false;
 					}
@@ -457,7 +497,7 @@ public class GameLogic {
 				}
 				for(int i = 0;i<moves;i++){
 					//king moved
-					//Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
+					
 					if(gamehistory[i].piece==13){
 						return false;
 					}
@@ -478,11 +518,11 @@ public class GameLogic {
 				}
 				for(int i = 0;i<moves;i++){
 					//king moved
-					//Log.d("EasyChess","Checking gamehistory!!!" + gamehistory[i].piece);
+					
 					if(gamehistory[i].piece==13){
 						return false;
 					}
-					//left rock moved
+					//right rock moved
 					if(gamehistory[i].start_x==7&&gamehistory[i].start_y==0){
 						return false;
 					}
@@ -493,8 +533,10 @@ public class GameLogic {
 		}
 		return false;
 	}
+	
 	//checks if user doesn't capture his own piece
 	private boolean dontHitMyOwnPiece(int x,int y,int isWhite){
+		
 		if(isWhite==1){
 			if(board[7-y][x]>1&&board[7-y][x]%2==0){
 				return false;
@@ -507,11 +549,16 @@ public class GameLogic {
 		}
 		
 		return true;
+		
 	}
-	//returns false is player is check
+	
+	//returns false is player is check, try to find contradiction
 	public boolean check(int isWhite){
+		
+		//kings position
 		int king_x = 0;
 		int king_y = 0;
+		
 		if(isWhite==1){
 			//get King's coordinates
 			for (int row = 0; row < 8; row ++){
@@ -555,7 +602,7 @@ public class GameLogic {
 			    for (int col = 0; col < 8; col++){
 
 			    		if(board[7-row][col]>1&&(board[7-row][col]%2)==0){
-			    			//Log.d("EasyChess","Check for piece " + board[7-row][col]);
+			    			
 			        		if(isValidMove(board[7-row][col],col,(7-row),king_x,(7-king_y),1)){
 			        			return false;
 			        		}
@@ -566,34 +613,38 @@ public class GameLogic {
 			}
 			
 		}
+		
 		return true;
+		
+		
 	}
+	
 	public void move(int start_x,int start_y,int end_x,int end_y,int piece){
 		
 		gamehistory[moves] = new GameHistory(start_x, start_y, end_x, end_y, piece);
 		moves = moves + 1;
 		
 	}
+	
 	public boolean isCheckMate(int isWhite){
+		
 		//if player stands check-> continue, else stop
 		if(check(isWhite)){
 			return false;
 		}
-		//Log.d("Checkmate","I am white: " + isWhite);
-		//make a list of pieces, use start_x and start_y
+		
 		GameHistory [] myPieces = new GameHistory[16];
 		int myPieces_counter = 0;
+		
 		if(isWhite==1){
-			
-			
 			for (int row = 0; row < 8; row ++){
 			    for (int col = 0; col < 8; col++){
-
 			    		if(board[7-row][col]>1&&(board[7-row][col]%2)==0){
+			    			
 			    			int piece = board[7-row][col];
-			    			//Log.d("Checkmate","Storing piece " + piece);
 			    			myPieces[myPieces_counter] = new GameHistory(col,(7-row),0,0,piece);
 			    			myPieces_counter = myPieces_counter + 1;
+			    			
 			        	}
 			    	
 			    	
@@ -602,15 +653,15 @@ public class GameLogic {
 
 		}
 		
-		else{
-			
+		else{	
 			for (int row = 0; row < 8; row ++){
 			    for (int col = 0; col < 8; col++){
-			    		if(board[7-row][col]>1&&(board[7-row][col]%2)==1){			    			
+			    		if(board[7-row][col]>1&&(board[7-row][col]%2)==1){
+			    			
 			    			int piece = board[7-row][col];
-			    			//Log.d("Checkmate","Storing piece " + piece);
 			    			myPieces[myPieces_counter] = new GameHistory(col,(7-row),0,0,piece);
 			    			myPieces_counter = myPieces_counter + 1;
+			    			
 			        	}
 			    }
 			}
@@ -619,51 +670,44 @@ public class GameLogic {
 
 		
 		for(int i = 0;i<myPieces_counter;i++){
-			//Log.d("Checkmate","checking piece "+myPieces[i].piece);
 			if(myPieces[i].piece>0){
 				for (int row = 0; row < 8; row ++){
 				    for (int col = 0; col < 8; col++){
-				    	if(isValidMove(myPieces[i].piece,myPieces[i].start_x,myPieces[i].start_y,col,row,isWhite)){
+				    	if(isValidMove(myPieces[i].piece,myPieces[i].start_x,
+				    			myPieces[i].start_y,col,row,isWhite)){
+				    		
 				    		int restorePiece = board[row][col];
-				    		Log.d("checkmate","check piece "+ myPieces[i].piece);
-				    		Log.d("checkmate","set restoring piece to "+ restorePiece);
 				    		simulateMove(myPieces[i].start_x, myPieces[i].start_y, col, row, myPieces[i].piece,0);
+				    		
 				    		if(check(isWhite)){
-				    			//Log.d("Checkmate","Found valid move" + myPieces[i].start_x + myPieces[i].start_y);
 				    			simulateMove(col, row,myPieces[i].start_x, myPieces[i].start_y,myPieces[i].piece,restorePiece);
 				    			return false;
 				    		}
+				    		
 				    		simulateMove(col, row,myPieces[i].start_x, myPieces[i].start_y,myPieces[i].piece,restorePiece);
+				    	
 				    	}
 				    }
 				}
 			}
 		}
 		
-		
 		return true;
 	}
-	private int square(int number){
+	
+	private int square( int number){
+		
 		return number*number;
+		
 	}
 	
 	public void simulateMove(int start_x,int start_y,int end_x,int end_y,int piece,int restorePiece){
-		//Log.d("simulate","BOARD");
-		//Log.d("simulate","" + board[0][0] + " "+ board[0][1] + " "+ board[0][2] + " "+ board[0][3] + " "+ board[0][4] + " "+ board[0][5] + " "+ board[0][6]+ " "+ board[0][7]);
-		//Log.d("simulate","" + board[1][0] + " "+ board[1][1] + " "+ board[1][2] + " "+ board[1][3] + " "+ board[1][4] + " "+ board[1][5] + " "+ board[1][6]+ " "+ board[1][7]);
-		//Log.d("simulate","" + board[2][0] + " "+ board[2][1] + " "+ board[2][2] + " "+ board[2][3] + " "+ board[2][4] + " "+ board[2][5] + " "+ board[2][6]+ " "+ board[2][7]);
-		//Log.d("simulate","" + board[3][0] + " "+ board[3][1] + " "+ board[3][2] + " "+ board[3][3] + " "+ board[3][4] + " "+ board[3][5] + " "+ board[3][6]+ " "+ board[3][7]);
-		//Log.d("simulate","" + board[4][0] + " "+ board[4][1] + " "+ board[4][2] + " "+ board[4][3] + " "+ board[4][4] + " "+ board[4][5] + " "+ board[4][6]+ " "+ board[4][7]);
-		//Log.d("simulate","" + board[5][0] + " "+ board[5][1] + " "+ board[5][2] + " "+ board[5][3] + " "+ board[5][4] + " "+ board[5][5] + " "+ board[5][6]+ " "+ board[5][7]);
-		//Log.d("simulate","" + board[6][0] + " "+ board[6][1] + " "+ board[6][2] + " "+ board[6][3] + " "+ board[6][4] + " "+ board[6][5] + " "+ board[6][6]+ " "+ board[6][7]);
-		//Log.d("simulate","" + board[7][0] + " "+ board[7][1] + " "+ board[7][2] + " "+ board[7][3] + " "+ board[7][4] + " "+ board[7][5] + " "+ board[7][6]+ " "+ board[7][7]);
 		
-		//Log.d("simulate","Simulating " + start_x + " " +  start_y + " to " + end_x + " " + end_y);
-		if(restorePiece>1){
-			//Log.d("simulate","Restoring piece " + restorePiece); 
+		//restorePiece if for taking a simulated move back
+		if( restorePiece>1){ 
 			board[start_y][start_x] = restorePiece;
 		}
-		else if((start_x+start_y)%2==0){
+		else if(( start_x+start_y)%2==0){
 			board[start_y][start_x] = 0;
 		}
 		else{
@@ -671,14 +715,6 @@ public class GameLogic {
 		}
 		
 		board[end_y][end_x] = piece;
-		//Log.d("simulate","BOARD AFTER #####");
-		//Log.d("simulate","" + board[0][0] + " "+ board[0][1] + " "+ board[0][2] + " "+ board[0][3] + " "+ board[0][4] + " "+ board[0][5] + " "+ board[0][6]+ " "+ board[0][7]);
-		//Log.d("simulate","" + board[1][0] + " "+ board[1][1] + " "+ board[1][2] + " "+ board[1][3] + " "+ board[1][4] + " "+ board[1][5] + " "+ board[1][6]+ " "+ board[1][7]);
-		//Log.d("simulate","" + board[2][0] + " "+ board[2][1] + " "+ board[2][2] + " "+ board[2][3] + " "+ board[2][4] + " "+ board[2][5] + " "+ board[2][6]+ " "+ board[2][7]);
-		//Log.d("simulate","" + board[3][0] + " "+ board[3][1] + " "+ board[3][2] + " "+ board[3][3] + " "+ board[3][4] + " "+ board[3][5] + " "+ board[3][6]+ " "+ board[3][7]);
-		//Log.d("simulate","" + board[4][0] + " "+ board[4][1] + " "+ board[4][2] + " "+ board[4][3] + " "+ board[4][4] + " "+ board[4][5] + " "+ board[4][6]+ " "+ board[4][7]);
-		//Log.d("simulate","" + board[5][0] + " "+ board[5][1] + " "+ board[5][2] + " "+ board[5][3] + " "+ board[5][4] + " "+ board[5][5] + " "+ board[5][6]+ " "+ board[5][7]);
-		//Log.d("simulate","" + board[6][0] + " "+ board[6][1] + " "+ board[6][2] + " "+ board[6][3] + " "+ board[6][4] + " "+ board[6][5] + " "+ board[6][6]+ " "+ board[6][7]);
-		//Log.d("simulate","" + board[7][0] + " "+ board[7][1] + " "+ board[7][2] + " "+ board[7][3] + " "+ board[7][4] + " "+ board[7][5] + " "+ board[7][6]+ " "+ board[7][7]);
+		
 	}
 }

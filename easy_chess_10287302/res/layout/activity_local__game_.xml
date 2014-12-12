@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Local Game"
+        android:text="@string/local_titel"
         android:layout_centerHorizontal="TRUE"
         android:id="@+id/titel"
         android:textColor="#000000"
@@ -23,91 +23,86 @@
          >
 
 	</ListView>
-	<LinearLayout
-	    android:id="@+id/x_coords"
-	android:layout_below="@+id/titel"
-	android:layout_marginTop="10dp"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    
-    android:orientation="vertical" >
+	
     
     <TableRow
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
 		android:id="@+id/y_coordinates"
+		android:layout_below="@+id/titel"
+		android:layout_marginTop="10dp"
 		android:layout_gravity="center"
-		android:layout_marginBottom="0px"
-		android:layout_marginTop="0px">
+		>
 		
         <ImageView
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:background="@drawable/white"
         android:id="@+id/indicator"
+        android:contentDescription="@string/desc"
         >
         </ImageView>
         
         <TextView
-        android:layout_width="50px"
-        android:layout_height="50px"
-        android:text="A"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="@string/local_coord_a"
         android:textColor="#000000"
         android:id="@+id/field1"
         android:textSize="20sp" />
         
         <TextView
-        android:layout_width="50px"
-        android:layout_height="50px"
-        android:text="B"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="@string/local_coord_b"
         android:textColor="#000000"
         android:id="@+id/field2"
         android:textSize="20sp" />
         
         <TextView
-        android:layout_width="50px"
-        android:layout_height="50px"
-        android:text="C"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="@string/local_coord_c"
         android:textColor="#000000"
         android:id="@+id/field3"
         android:textSize="20sp" />
         
         <TextView
-        android:layout_width="50px"
-        android:layout_height="50px"
-        android:text="D"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="@string/local_coord_d"
         android:textColor="#000000"
         android:id="@+id/field4"
         android:textSize="20sp" />
         
         <TextView
-        android:layout_width="50px"
-        android:layout_height="50px"
-        android:text="E"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="@string/local_coord_e"
         android:textColor="#000000"
         android:id="@+id/field5"
         android:textSize="20sp" />
         
         <TextView
-        android:layout_width="50px"
-        android:layout_height="50px"
-        android:text="F"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="@string/local_coord_f"
         android:textColor="#000000"
         android:id="@+id/field6"
         android:textSize="20sp" />
         
         <TextView
-        android:layout_width="50px"
-        android:layout_height="50px"
-        android:text="G"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="@string/local_coord_g"
         android:textColor="#000000"
         android:id="@+id/field7"
         android:textSize="20sp" />
         
         <TextView
-        android:layout_width="50px"
-        android:layout_height="50px"
-        android:text="H"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:text="@string/local_coord_h"
         android:textColor="#000000"
         android:id="@+id/field8"
         android:textSize="20sp" />
@@ -117,11 +112,10 @@
         </TableRow>
     
 
-</LinearLayout>
 	<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selected a piece"
+        android:text="@string/local_below_tekst"
         android:layout_below="@+id/list"
 		android:layout_marginTop="15dp"
         android:layout_centerHorizontal="TRUE"
@@ -137,12 +131,12 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/white"
         android:onClick="back"
-        android:text="Back" />
+        android:text="@string/back_button" />
 
     <Button
         android:id="@+id/yes_button"
-        android:layout_width="125px"
-        android:layout_height="75px"
+        android:layout_width="87.5dp"
+        android:layout_height="52.5dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="25dp"
         android:layout_below="@+id/move"
@@ -150,8 +144,8 @@
         android:onClick="yes_button" />
     <Button
         android:id="@+id/no_button"
-        android:layout_width="125px"
-        android:layout_height="75px"
+        android:layout_width="87.5dp"
+        android:layout_height="52.5dp"
         android:layout_marginRight="25dp"
         android:layout_below="@+id/move"
         android:layout_alignParentRight="true"

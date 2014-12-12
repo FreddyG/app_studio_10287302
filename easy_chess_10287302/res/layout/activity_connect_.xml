@@ -16,7 +16,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/white"
         android:onClick="local"
-        android:text="Local" />
+        android:text="@string/connect_local" />
 
     <Button
         android:id="@+id/bluetooth"
@@ -28,7 +28,7 @@
         android:background="@drawable/black"
         android:textColor="#F0FFFF"
         android:onClick="bluetooth"
-        android:text="Bluetooth" />
+        android:text="@string/connect_bluetooth" />
 
     <Button
         android:id="@+id/back"
@@ -39,7 +39,7 @@
         android:layout_alignLeft="@+id/bluetooth"
         android:background="@drawable/white"
         android:onClick="back"
-        android:text="Back" />
+        android:text="@string/back_button" />
 
 
     

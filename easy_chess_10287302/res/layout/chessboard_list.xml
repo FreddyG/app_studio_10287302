@@ -13,8 +13,8 @@
 		android:layout_marginTop="0px">
 		
         <TextView
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:text=""
         android:textColor="#000000"
         android:id="@+id/y_coordinate"
@@ -22,106 +22,114 @@
 		
 		<ImageView
         android:id="@+id/field1"
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="0px"
         android:layout_marginRight="0px"
         android:layout_marginTop="0px"
         android:layout_marginBottom="0px"
         android:onClick="veld1"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:background="@drawable/list_selector"
         >
         </ImageView>
         
         <ImageView
         android:id="@+id/field2"
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="0px"
         android:layout_marginRight="0px"
         android:layout_marginTop="0px"
         android:layout_marginBottom="0px"
         android:onClick="veld2"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:background="@drawable/list_selector"
         >
         </ImageView>
         <ImageView
         android:id="@+id/field3"
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="0px"
         android:layout_marginRight="0px"
         android:layout_marginTop="0px"
         android:layout_marginBottom="0px"
         android:onClick="veld3"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:background="@drawable/list_selector"
         >
         </ImageView>
         <ImageView
         android:id="@+id/field4"
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="0px"
         android:layout_marginRight="0px"
         android:layout_marginTop="0px"
         android:layout_marginBottom="0px"
         android:onClick="veld4"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:background="@drawable/list_selector"
         >
         </ImageView>
         <ImageView
         android:id="@+id/field5"
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="0px"
         android:layout_marginRight="0px"
         android:layout_marginTop="0px"
         android:layout_marginBottom="0px"
         android:onClick="veld5"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:background="@drawable/list_selector"
         >
         </ImageView>
         <ImageView
         android:id="@+id/field6"
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="0px"
         android:layout_marginRight="0px"
         android:layout_marginTop="0px"
         android:layout_marginBottom="0px"
         android:onClick="veld6"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:background="@drawable/list_selector"
         >
         </ImageView>
         <ImageView
         android:id="@+id/field7"
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="0px"
         android:layout_marginRight="0px"
         android:layout_marginTop="0px"
         android:layout_marginBottom="0px"
         android:onClick="veld7"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:background="@drawable/list_selector"
         >
         </ImageView>
         <ImageView
         android:id="@+id/field8"
-        android:layout_width="50px"
-        android:layout_height="50px"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginLeft="0px"
         android:layout_marginRight="0px"
         android:layout_marginTop="0px"
         android:layout_marginBottom="0px"
         android:onClick="veld8"
         android:clickable="true"
+        android:contentDescription="@string/desc"
         android:background="@drawable/list_selector"
         >
         </ImageView>

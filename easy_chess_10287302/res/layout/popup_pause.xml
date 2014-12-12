@@ -10,7 +10,7 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Continue"
+        android:text="@string/popup_continue"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
      />
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Continue"
         android:layout_centerHorizontal="true"
-        android:text="New Game"
+        android:text="@string/popup_newgame"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
      />
@@ -32,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/NewGame"
         android:layout_centerHorizontal="true"
-        android:text="Save"
+        android:text="@string/popup_save"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
      />
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/Save"
         android:layout_centerHorizontal="true"
-        android:text="Load"
+        android:text="@string/popup_load"
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
      />
@@ -56,6 +56,6 @@
          android:layout_below="@+id/Load"
           android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
-         android:text="Exit" />
+         android:text="@string/popup_exit" />
      
 </RelativeLayout>

@@ -16,5 +16,48 @@
         making a visual design on the chessboard, express 
         their beauty abstractly, like a poem.  -  Marcel 
         Duchamp</string>
-
+    <string name="desc"> </string>    
+    
+    <string name="back_button">Back</string>
+    
+    <string name="account_titel">My Account</string>
+    <string name="account_name">Name:</string>
+	<string name="account_age">Age:</string>
+	<string name="account_rating">1200</string>
+	<string name="account_rating_number">1200</string>
+	
+	<string name="bluetooth_titel">Bluetooth</string>
+	<string name="bluetooth_refresh">Refresh</string>
+	
+	<string name="connect_local">Local</string>
+	<string name="connect_bluetooth">Bluetooth</string>
+	
+	<string name="local_titel">Local Game</string>
+	<string name="local_coord_a">A</string>
+	<string name="local_coord_b">B</string>
+	<string name="local_coord_c">C</string>
+	<string name="local_coord_d">D</string>
+	<string name="local_coord_e">E</string>
+	<string name="local_coord_f">F</string>
+	<string name="local_coord_g">G</string>
+	<string name="local_coord_h">H</string>
+	<string name="local_below_tekst">Select a piece</string>
+	
+	<string name="main_titel">EasyChess</string>
+	<string name="main_welcome">Welcome!</string>
+	<string name="main_connect">Connect</string>
+	<string name="main_preferences">Preferences</string>
+	<string name="main_account">My Account</string>
+	<string name="main_quit">Quit</string>
+	
+	<string name="preference_classic">Classic</string>
+	<string name="preference_modern">Modern</string>
+	
+	<string name="lobby_name">Naam</string>
+	
+	<string name="popup_continue">Continue</string>
+	<string name="popup_newgame">New Game</string>
+	<string name="popup_save">Save</string>
+	<string name="popup_load">Load</string>
+	<string name="popup_exit">Exit</string>
 </resources>

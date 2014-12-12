@@ -4,18 +4,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+    
      <TableRow
+        android:id="@+id/row1"
 		android:layout_width="wrap_content"
 		android:layout_height="fill_parent"
-		android:id="@+id/row1"
+		
 		android:layout_gravity="center"
 		android:layout_marginBottom="0px"
 		android:layout_marginTop="0px">
+		
 		<TextView
+		android:id="@+id/Naam"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Naam"
-        android:text="Naam" />
+        android:text="@string/lobby_name" />
 
      </TableRow>
     
